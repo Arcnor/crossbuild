@@ -2,7 +2,8 @@ FROM buildpack-deps:buster-curl
 MAINTAINER Manfred Touron <m@42.am> (https://github.com/moul)
 
 # Install deps
-RUN set -x; echo "Starting image build for Debian Stretch" \
+RUN echo 'deb http://deb.debian.org/debian buster-backports main' > /etc/apt/sources.list.d/backports.list
+RUN set -x; echo "Starting image build for Debian Buster" \
  && dpkg --add-architecture arm64                      \
  && dpkg --add-architecture armel                      \
  && dpkg --add-architecture armhf                      \
@@ -21,7 +22,7 @@ RUN set -x; echo "Starting image build for Debian Stretch" \
         binutils-multiarch                             \
         binutils-multiarch-dev                         \
         build-essential                                \
-        clang                                          \
+        clang-8                                        \
         crossbuild-essential-arm64                     \
         crossbuild-essential-armel                     \
         crossbuild-essential-armhf                     \
